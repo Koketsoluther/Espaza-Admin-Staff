@@ -25,7 +25,7 @@ const UserProfile = () => {
 
            
             <article className="column">
-                <p>{user['https://my-app.example.com/roles']}</p>
+                <p>{user.sub}</p>
             </article>
         
         )
