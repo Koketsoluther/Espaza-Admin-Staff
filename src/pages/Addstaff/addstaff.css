@@ -1,0 +1,57 @@
+.add{
+    width: 70.%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+
+
+}
+
+.add form {
+    gap: 20px;
+}
+
+
+.add-staffpassword,.add-staffIDnumber,.add-Shop-name,.add-Shop-name,.add-Shopowner-name,.add-Staff-first-name{
+    width: max(40%,280px);
+}
+
+.add-staffpassword input,.add-staffIDnumber input,.add-Shop-name input,.add-Shop-name input,.add-Shopowner-name input,.add-Staff-first-name input{
+    padding: 10px;
+}
+.add-staffpermission{
+    display: flex;
+    gap: 30px;
+}
+.add-staffpermission select{
+    max-width: 120px;
+    padding: 10px;
+}
+.add-button{
+    max-width: 120px;
+    border: none;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+
+.add-button, .list-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    align:left;
+    background-color: black; /* Change as needed */
+    color: white;
+    border-radius: 4px;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+
+.add-button:hover, .list-button:hover {
+    background-color: orange; /* Change as needed */
+}
