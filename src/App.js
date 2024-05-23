@@ -13,7 +13,7 @@ import Dashboard from './pages/Dashboard/dashboard'
 import ListOrders from './pages/listOrders/listorders'
 import AssignOrders from './pages/assignorders/assignorders'
 import {ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/ReactToastify.css';
 import ListStaff from './pages/listStaff/liststaff'
 
 const App = () =>{
