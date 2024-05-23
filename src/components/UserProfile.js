@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const UserProfile = () => {
     const { user, isAuthenticated } = useAuth0();
-    console.log(user['https://my-app.example.com/roles']);
+    //console.log(user['https://my-app.example.com/roles']);
     // Check if user and roles exist
     /*const navigate = useNavigate(); // Access navigate function from react-router-dom
 
