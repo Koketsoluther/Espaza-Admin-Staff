@@ -10,9 +10,20 @@ const Assignorders = () => {
 
 //storing all the data from the database , we stre them in a state variable
 const[list,setList]=useState([]);
+const [shopList, setShopList] = useState([]);
+
 const [productCategory,setProductCategory]= useState('');
 
- // should get a list with all the products
+const fetchshopList = async () => {
+  const response = await axios.get(`${url}/api/shop/list`); 
+  if (response.data.success) {
+      setShopList(response.data.data);
+  } else {
+      toast.error("Error fetching shop list");
+  }
+};
+
+
 const fetchList = async( )=>{
     
     const response = await axios.get(`${url}/api/order/list`);
@@ -29,6 +40,7 @@ const fetchList = async( )=>{
 useEffect(()=>{
 
     fetchList();
+    fetchshopList();
   
 },[])
 
@@ -44,25 +56,27 @@ useEffect(()=>{
 //     toast.error("Error")
 //    }
 // }
-const handleProductCategoryChange=(event)=>{
-    setProductCategory(event.target.value.item);
+// const handleProductCategoryChange=(event)=>{
+//     setProductCategory(event.target.value.item);
+// };
+
+const statusHandler = async (event, orderId, shopId) => {
+  const response = await axios.post(`${url}/api/order/status`, {
+      orderId: orderId,
+      STATUS: event.target.value,
+      shopID: shopId // Add the shopID to the request
+  });
+  if (response.data.success) {
+      await fetchList();
+      console.log(response.data);
+  } else {
+      console.error("Error updating order status");
+  }
 };
 
-const statusHandler = async(event,item)=>{
-  console.log(item)
-  const response= await axios.post(`${url}/api/order/status`,{
-    orderId:item,
-    STATUS:event.target.value
-    
-  
-  })
-  if(response.data.success){
-    await fetchList();
-    console.log(response.data)
-  }
-  console.log(event.target.value)
 
-}
+
+
 
 
   return (
@@ -96,13 +110,12 @@ const statusHandler = async(event,item)=>{
                     {/* <p onClick={()=>removeProduct(item._id)} className='cursor'>X</p> */}
                     <p>
 
-                    <select onSelect={list.map} name="spaza" onChange={handleProductCategoryChange} value={productCategory}  >
-                            <option value= "Spaza 1">Spaza 1</option>
-                            <option value= "Spaza 2">Spaza 2</option>
-                            <option value= "Spaza 3">Spaza 3</option>
-                            <option value= "Spaza 4">Spaza 4</option>
-                          
-                        </select></p>
+                    <select name="spaza" onChange={(event) => statusHandler(event, item._id, productCategory)} value={productCategory}>
+                    {shopList.map((shop) => (
+                    <option key={shop.id} value={shop.id}>
+                    {shop.name}
+                    </option>))}
+                    </select></p>
                 </div>
             )
 

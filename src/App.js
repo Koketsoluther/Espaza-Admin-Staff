@@ -23,7 +23,7 @@ const App = () =>{
       <Navbar/>
       <hr/>
       <div className='app-content'>
-        <Sidebar/>
+        <Sidebar userRole='admin'/>
         <Routes>
         <Route path= "/" element = {<Dashboard/>}/>
           <Route path= "/addproduct" element = {<Addproduct/>}/>

@@ -7,7 +7,7 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsPeopleFill, BsListCheck} from 'react-icons/bs'
 
 
-const Sidebar = () => {
+const Sidebar = ({ userRole }) => {
 
     const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
 
@@ -34,6 +34,47 @@ const Sidebar = () => {
             <NavLink to= '/' className= "sidebar-option">
                     <p><BsGrid1X2Fill className='icon'/> Dashboard</p>
                 </NavLink>
+
+                
+                {userRole === 'staff' && (
+                    <>
+                     <div className='sidebar-option' onClick={toggleProductsDropdown}>
+                     <p><BsFillArchiveFill className='icon'/> Products</p>
+                     {isProductsDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
+                 </div>
+             {isProductsDropdownOpen && (
+               <div className='dropdown-menu'>
+                 <NavLink to='/ListProduct' className='dropdown-item'>
+                   <p>List Products</p>
+                 </NavLink>
+                 </div>
+                )}
+                <div className='sidebar-option' onClick={toggleShopsDropdown}>
+                <p><BsCart3  className='icon_header'/>Shops</p>
+                {isShopsDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </div>
+        {isShopsDropdownOpen && (
+          <div className='dropdown-menu'>
+            <NavLink to='/shops' className='dropdown-item'>
+              <p>View all shops</p>
+            </NavLink>
+          </div>
+        )}
+<div className='sidebar-option' onClick={toggleOrdersDropdown}>
+                <p> Orders</p>
+                {isOrdersDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </div>
+        {isOrdersDropdownOpen && (
+          <div className='dropdown-menu'>
+            <NavLink to='/listorders' className='dropdown-item'>
+              <p>Orders</p>
+            </NavLink>
+          </div>
+        )}              
+                </>
+        )}        
+          {(userRole === 'admin') && (
+          <>
             <div className='sidebar-option' onClick={toggleProductsDropdown}>
                 <p><BsFillArchiveFill className='icon'/> Products</p>
                 {isProductsDropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
@@ -84,7 +125,8 @@ const Sidebar = () => {
                 <NavLink to= '/Managestock' className= "sidebar-option">
                     <p><BsListCheck className='icon'/>Manage stock</p>
                 </NavLink>
-
+                </>
+        )}
             </div>
 
         </div>

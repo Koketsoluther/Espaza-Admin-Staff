@@ -4,7 +4,7 @@ import
 { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,}
  from 'react-icons/bs'
  import 
- { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } 
+ { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer, Label} 
  from 'recharts';
  import './dashboard.css'
  import axios from "axios"
@@ -170,14 +170,67 @@ return (
             }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name">
+                <Label value="Shop Names" offset={-5} position="insideBottom" />
+                </XAxis>
+                <YAxis>
+                <Label value="Number of Orders" angle={-90} position="insideLeft" />
+                </YAxis>
+                <Tooltip />
+                <Legend />
+                
+                <Bar dataKey="orders" fill="#82ca9d" />
+                </BarChart>
+            </ResponsiveContainer>
+
+            <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+            width={500}
+            height={300}
+            data={shopData}
+            margin={{
+                top: 5,
+                right: 30,
+                left: 20,
+                bottom: 5,
+            }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" >
+                <Label value="Shop Names" offset={-5} position="insideBottom" />
+                </XAxis>
+                <YAxis>
+                <Label value="Number of Staff" angle={-90} position="insideLeft" />
+                </YAxis>
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="staff" fill="#8884d8" />
+                
+                </BarChart>
+            </ResponsiveContainer>
+
+            {/* <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                width={500}
+                height={300}
+                data={shopData}
+                margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                }}
+                >
+                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="staff" fill="#8884d8" />
-                <Bar dataKey="orders" fill="#82ca9d" />
-                </BarChart>
-            </ResponsiveContainer>
+                <Line type="monotone" dataKey="orders" stroke="#8884d8" activeDot={{ r: 8 }} />
+                <Line type="monotone" dataKey="staff" stroke="#82ca9d" />
+                </LineChart>
+            </ResponsiveContainer> */}
+
             </div>
         </main>
   )
