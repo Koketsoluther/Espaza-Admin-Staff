@@ -6,7 +6,7 @@ import {toast} from "react-toastify"
 
 
 const Add = () => {
-const url = "http://localhost:4000";
+const url = "https://us-central1-e-spazadb.cloudfunctions.net/func";
 const [image,setImage] = useState(false);
 const [data,setData] = useState({
     NAME: "",

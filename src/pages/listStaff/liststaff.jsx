@@ -4,7 +4,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 
-const url = "http://localhost:4000";
+const url = "https://us-central1-e-spazadb.cloudfunctions.net/func";
 
 const ListStaff = () => {
 

@@ -11,7 +11,7 @@ import
 import {toast} from "react-toastify"
 
 function Home() {
-    const url = "http://localhost:4000"
+    const url = "https://us-central1-e-spazadb.cloudfunctions.net/func"
     const [list,setList] = useState([]);
     const [plist,setpList] = useState([]);
     const [shopData, setShopData] = useState([]);

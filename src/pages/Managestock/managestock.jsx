@@ -6,7 +6,7 @@ import { jsPDF } from 'jspdf';
 
 
 const Manage = () => {
-    const url = "http://localhost:4000"
+    const url = "https://us-central1-e-spazadb.cloudfunctions.net/func"
     const [list, setList] = useState([]);
 
     const fetchList = async () => {
