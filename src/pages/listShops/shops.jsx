@@ -34,7 +34,7 @@ const List = () => {
     
       const getOrderList = async (shopId) => {
         try {
-          const response = await axios.get(`${url}/api/orders/list`, { params: { shopId } });
+          const response = await axios.get(`${url}/api/order/list`, { params: { shopId } });
           if (response.data.success) {
             return response.data.data;
           } else {
@@ -53,11 +53,11 @@ const List = () => {
           if (response.data.success) {
             return response.data.data;
           } else {
-            toast.error('Error fetching orders list');
+            toast.error('Error fetching staff list');
             return [];
           }
         } catch (error) {
-          toast.error('Error fetching orders list');
+          toast.error('Error fetching staff list');
           return [];
         }
       };
@@ -71,20 +71,21 @@ const List = () => {
     
           const doc = new jsPDF();
           doc.text(`Shop Name: ${shop.NAME}`, 10, 10);
-          doc.text(`Address: ${shop.ADRESS}`, 10, 20);
+          doc.text(`Address: ${shop.ADDRESS}`, 10, 20);
           doc.text(`Owner: ${shop.SHOPOWNER}`, 10, 30);
           doc.text(`Number of Orders: ${orders.length}`, 10, 40);
-          let row1 = 60;
-          orders.forEach((order) => {
-            doc.text(order.detail, 10, row1);
-            row1 += 10;
-          });
-          doc.text(`Staff: ${staff.length}`, 10, 50);
-          let row = row1 + 10;
-          staff.forEach((staff) => {
-            doc.text(staff.name, 10, row);
-            row += 10;
-          });
+          // let row1 = 20;
+          // orders.forEach((order) => {
+          //   doc.text(order.ADDRESS.street, 10, row1);
+          //   row1 += 20;
+          // });
+          let row2 = 50
+          doc.text(`Staff: ${String(staff.length)}`, 10, row2);
+          
+          // staff.forEach((staff) => {
+          //   doc.text(staff.NAME, 10, row2+30);
+          //   row2 += 30;
+          // });
           doc.save(`${shop.NAME}_Shop_History.pdf`);
         
       }

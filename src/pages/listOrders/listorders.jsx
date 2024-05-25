@@ -39,6 +39,18 @@ useEffect(()=>{
 //    }
 // }
 
+const statusHandler = async (event, orderId) => {
+    const response = await axios.post(`${url}/api/order/status`, {
+        orderId: orderId,
+        STATUS: event.target.value,
+    });
+    if (response.data.success) {
+        await fetchList();
+        console.log(response.data);
+    } else {
+        console.error("Error updating order status");
+    }
+  };
 
   return (
     <div className='list add flex-col'>
@@ -46,7 +58,8 @@ useEffect(()=>{
         <div className='list-table'>
         <div className='list-table-format title'>
             
-            <b>Name</b>
+            <b>Order details</b>
+            <b>Change Status</b>
             <b>Status</b>
             <b>Price</b>
             
@@ -54,10 +67,15 @@ useEffect(()=>{
         {list.map((item =>{
             return(
                 <div key ={item._id} className ='list-table-format'>
-                    {/* <img src={`${url}/images/`+item._id.IMAGE} alt=""/> */}
                     <p>{`${item.ADDRESS.firstName} ${item.ADDRESS.lastName} ${item.ADDRESS.email}`}
                     <p>{`${item.ADDRESS.street} ${item.ADDRESS.city} ${item.ADDRESS.province}`}</p>
                     <p>{`${item.ADDRESS.country} Postal-Code: ${item.ADDRESS.postalcode} 0${item.ADDRESS.phone}`}</p></p>
+                    <select onChange={(event)=>statusHandler(event, item._id)} value={item._id.STATUS}>
+                      <option value="Order received">Order Recieved</option>
+                      <option value="Processing Order"> Processing Order</option>
+                      <option value="Order Shipped">Order Shipped</option>
+                      <option value="Delivered">Delivered</option>
+                    </select>
                     
                     <p>{item.STATUS}</p>
                     <p>R{item.AMOUNT}</p>
@@ -66,6 +84,7 @@ useEffect(()=>{
             )
 
         }))}
+        
 
         </div>
     </div>

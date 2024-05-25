@@ -32,11 +32,11 @@ const Manage = () => {
         const doc = new jsPDF();
         doc.text(`Number of Products: ${items.length}`, 10, 10);
 
-        let row1 = 10;
+        let row1 = 20;
         items.forEach((item) => {
             doc.text(item.NAME, 10, row1);
-            doc.text(item.STOCK, 10, row1);
-            row1 += 10;
+            doc.text(`Stock: ${String(item.STOCK)}`, 10, row1+10);
+            row1 += 20;
         });
 
         doc.save('Manage_stock.pdf');

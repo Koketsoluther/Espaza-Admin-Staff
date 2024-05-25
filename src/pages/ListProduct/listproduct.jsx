@@ -48,7 +48,7 @@ const List = () => {
                             <img src={`${url}/images/`+item.IMAGE} alt = "" />
                             <p>{item.NAME}</p>
                             <p>{item.CATEGORY}</p>
-                            <p>${item.PRICE}</p>
+                            <p>R{item.PRICE}</p>
                             <p onClick={()=>removeProduct(item._id)} className='cursor'>X</p>
                         </div>
                     )

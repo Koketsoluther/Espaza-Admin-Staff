@@ -50,9 +50,10 @@ function Home() {
 
     const getOrderList = async (shopId) => {
         try {
-          const response = await axios.get(`${url}/api/order/list`, { params: { shopId } });
+          const response = await axios.get(`${url}/api/order/shopOrders`, { params: { shopId } });
           if (response.data.success) {
             return response.data.data;
+            
           } else {
             toast.error('Error fetching orders list');
             return [];
@@ -86,7 +87,7 @@ function Home() {
                 const orders = await getOrderList(shop._id);
                 const staff = await getStaffList(shop._id);
                 return {
-                    name: shop.name,
+                    name: shop.NAME,
                     staff: staff.length,
                     orders: orders.length,
                 };
