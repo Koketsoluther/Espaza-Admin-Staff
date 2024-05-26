@@ -22,10 +22,10 @@ const UserProfile = () => {
 
     return (
         isAuthenticated &&(
-
+            console.log(user),
            
             <article className="column">
-                <p>{user.sub}</p>
+                <p>{user['https://my-app.example.com/roles'][0]}</p>
             </article>
         
         )

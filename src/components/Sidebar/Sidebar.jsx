@@ -36,7 +36,7 @@ const Sidebar = ({ userRole }) => {
                 </NavLink>
 
                 
-                {userRole === 'staff' && (
+                {userRole === 'Staff' && (
                     <>
                      <div className='sidebar-option' onClick={toggleProductsDropdown}>
                      <p><BsFillArchiveFill className='icon'/> Products</p>
@@ -73,7 +73,7 @@ const Sidebar = ({ userRole }) => {
         )}              
                 </>
         )}        
-          {(userRole === 'admin') && (
+          {(userRole === 'Admin') && (
           <>
             <div className='sidebar-option' onClick={toggleProductsDropdown}>
                 <p><BsFillArchiveFill className='icon'/> Products</p>
