@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
 
 import Navbar from './components/Navbar/Navbar'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -16,14 +16,33 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/ReactToastify.css';
 import ListStaff from './pages/listStaff/liststaff'
 
+import { useAuth0 } from "@auth0/auth0-react";
+
+
+
 const App = () =>{
+  const { user, isAuthenticated } = useAuth0();
+
+  // const { user, isAuthenticated, isLoading } = useAuth0();
+   const [userRole, setUserRole] = useState('');
+   useEffect(() => {
+    if (isAuthenticated && user) {
+      const roles = user['https://my-app.example.com/roles'] || [];
+      setUserRole(roles[0]); // Assuming the first role is the primary role
+    }
+  }, [isAuthenticated, user]);
+  
+  
   return(
+
     <div>
       <ToastContainer/>
       <Navbar/>
       <hr/>
       <div className='app-content'>
-        <Sidebar userRole='admin'/>
+
+        <Sidebar userRole = {userRole}/>
+        
         <Routes>
         <Route path= "/" element = {<Dashboard/>}/>
           <Route path= "/addproduct" element = {<Addproduct/>}/>

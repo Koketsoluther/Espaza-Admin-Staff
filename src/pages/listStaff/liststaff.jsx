@@ -6,11 +6,27 @@ import { toast } from 'react-toastify'
 
 const url = "https://us-central1-e-spazadb.cloudfunctions.net/func";
 
-const ListStaff = () => {
 
+
+const ListStaff = () => {
+    // const getShop = async (shopId) => {
+    //     try {
+    //       const response = await axios.get(`${url}/api/shops/shop`, { shopid: shopId });
+    //       if (response.data.success) {
+    //         console.log(response.data.data);
+    //         return response.data.data;
+    //     } else {
+    //         toast.error('Error fetching shop details');
+    //         return null;
+    //     }
+    // } catch (error) {
+    //     toast.error('Error fetching shop details');
+    //     return null;
+    // }
+    //   };
+    
 //storing all the data from the database , we stre them in a state variable
 const[list,setList]=useState([]);
-
  // should get a list with all the products
 const fetchList = async( )=>{
     
@@ -27,17 +43,6 @@ useEffect(()=>{
 
     fetchList();
 },[])
-// const removeProduct = async(ProductID)=>{
-//    const response= await axios.post(`${url}/api/product/remove`,{id:ProductID});
-//    await fetchList();
-   
-//    if(response.data.success){
-//     toast.success(response.data.message)
-//    }
-//    else{
-//     toast.error("Error")
-//    }
-// }
 
 
   return (
@@ -48,7 +53,7 @@ useEffect(()=>{
             
             <b>Name</b>
             <b>Surname</b>
-            <b>Shop</b>
+            
             <b>ID</b>
             <b>Email</b>
             
@@ -56,17 +61,20 @@ useEffect(()=>{
             
         </div>
         {list.map((item =>{
+            
             return(
+                
                 <div key ={item._id} className ='list-table-format'>
-                    {/* <img src={`${url}/images/`+item._id.IMAGE} alt=""/> */}
+                    
                     <p>{item.NAME}</p>
                      <p>{item.SURNAME }</p>
-                     <p>{item.SHOP}</p>
+                     
+                     
                 
                     
                     <p>{item.ID}</p>
                     <p>{item.EMAIL}</p>
-                    {/* <p onClick={()=>removeProduct(item._id)} className='cursor'>X</p> */}
+                   
                 </div>
             )
 

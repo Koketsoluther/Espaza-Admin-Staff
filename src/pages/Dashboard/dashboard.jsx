@@ -169,8 +169,8 @@ return (
         <div className='charts'>
             <ResponsiveContainer width="100%" height="100%">
             <BarChart
-            width={500}
-            height={300}
+            width={2500}
+            height={500}
             data={shopData}
             margin={{
                 top: 5,
@@ -195,8 +195,8 @@ return (
 
             <ResponsiveContainer width="100%" height="100%">
             <BarChart
-            width={500}
-            height={300}
+            width={2000}
+            height={500}
             data={shopData}
             margin={{
                 top: 5,
