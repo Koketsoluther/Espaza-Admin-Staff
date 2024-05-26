@@ -19,7 +19,7 @@ jest.mock('react-toastify', () => ({
 }));
 
 describe('Add Component', () => {
-  const apiUrl = 'https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/';
+  const apiUrl = 'https://us-central1-e-spazadb.cloudfunctions.net/func';
 
   afterEach(() => {
     mock.reset();

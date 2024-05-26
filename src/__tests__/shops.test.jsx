@@ -18,7 +18,7 @@ jest.mock('react-toastify', () => ({
 }));
 
 describe('List Component', () => {
-  const apiUrl = 'https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/';
+  const apiUrl = 'https://us-central1-e-spazadb.cloudfunctions.net/func';
   
   const sampleShops = [
     { _id: '1', NAME: 'Shop 1', ADDRESS: 'Address 1', SHOPOWNER: 'Owner 1' },

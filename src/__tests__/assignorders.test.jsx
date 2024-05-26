@@ -18,7 +18,7 @@ jest.mock('react-toastify', () => ({
 }));
 
 describe('Assignorders Component', () => {
-  const apiUrl = 'https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/';
+  const apiUrl = 'https://us-central1-e-spazadb.cloudfunctions.net/func';
 
   const sampleOrders = [
     {
