@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { useAuth0 } from "@auth0/auth0-react";
 import './addstaff.css'
 import axios from 'axios'
@@ -9,7 +9,24 @@ import {Link} from "react-router-dom";
 const Add = () => {
 const url = "https://us-central1-e-spazadb.cloudfunctions.net/func"
 // const [productCategory,setProductCategory]= useState('');
+const [shopList, setShopList] = useState([]);
+const fetchShops = async () => {
+    try {
+        const response = await axios.get(`${url}/api/shop/list`); 
+        if (response.data.success) {
+            
+            setShopList(response.data.data);
+        } else {
+            toast.error("Error fetching shop list");
+        }
+    } catch (error) {
+        toast.error("Error fetching shop list");
+    }
+};
 
+useEffect(() => {
+    fetchShops();
+}, []);
 
 const [data,setData] = useState({
     NAME: "",
@@ -37,7 +54,7 @@ const onSubmitHandler = async (event) => {
     formData.append("PERMISSION",data.PERMISSION)
     console.log(data)
     const response= await axios.post(`${url}/api/staff/register`,{NAME:data.NAME, SURNAME:data.SURNAME,SHOP:data.SHOP,ID:data.ID,EMAIL:data.EMAIL})
-    console.log(response)
+    console.log(response.data)
     if (response.data.success){
         toast.success(response.data.message)
     }
@@ -74,12 +91,16 @@ const onSubmitHandler = async (event) => {
                 </div>
                 <div className = "add-Shop-name flex-col">
                     <p>Shop name</p>
-                    <select  name="SHOP" onChange={onChangeHandler} value={data.SHOP}  >
-                            <option value= "Spaza 1">Spaza 1</option>
-                            <option value= "Spaza 2">Spaza 2</option>
-                            <option value= "Spaza 3">Spaza 3</option>
-                            <option value= "Spaza 4">Spaza 4</option>
-                          
+                    <select
+                            name="SHOP"
+                            onChange={onChangeHandler}
+                            value={data.SHOP}
+                        >
+                            {shopList.map((shop) => (
+                                <option key={shop._id} value={shop._id}>
+                                    {shop.NAME}
+                                </option>
+                            ))}
                         </select>
                 </div>
                 <div className = "add-staffIDnumber flex-col">

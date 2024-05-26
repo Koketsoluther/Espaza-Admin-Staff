@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './addproduct.css'
-import {assets} from '../../assets/assets'
 import axios from "axios"
 import {toast} from "react-toastify"
+import { FaCamera } from 'react-icons/fa';
 
 
 const Add = () => {
@@ -20,7 +20,24 @@ const onChangeHandler = (event) => {
     setData(data => ({...data,[name]:value}))
 }
 
-
+const handleImageChange = (event) => {
+    const file = event.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Image = e.target.result;
+        // Use the base64Image string for further processing
+        console.log(base64Image);
+        data[`image`] = base64Image;
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  
+//   return (
+//     <input type="file" onChange={handleImageChange} />
+//   );
 
 const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -30,10 +47,10 @@ const onSubmitHandler = async (event) => {
     formData.append("PRICE",Number(data.PRICE))
     formData.append("CATEGORY",data.CATEGORY)
     formData.append("IMAGE",image)
-
+    console.log(data);
     
 
-    const response = await axios.post(`${url}/api/products/add`,formData);
+    const response = await axios.post(`${url}/api/products/add`,{NAME: data.NAME, STOCK: Number(data.STOCK), PRICE: Number(data.PRICE), CATEGORY: data.CATEGORY, IMAGE: data.image});
 
     if(response.data.success){
         setData({
@@ -54,10 +71,15 @@ const onSubmitHandler = async (event) => {
             <form className = "flex-col" onSubmit={onSubmitHandler}>
                 <div className= "add-img-upload flex col">
                     <p>Upload Image</p>
-                    <label htmlFor= 'image'>
-                        <img src = {image?URL.createObjectURL(image):assets.upload_area} alt = ""/>
-                    </label>
-                    <input onChange={(e)=> setImage(e.target.files[0])} type= "file" id = "IMAGE" hidden="" required />
+                    <label htmlFor="image">
+                    {image ? ( <img src={URL.createObjectURL(image)} alt="Uploaded" /> ) : (
+          <>
+            <FaCamera size="2rem" className="upload-icon" />
+            
+          </> )}
+      </label>
+                    {/* <input onChange={(e)=> setImage(e.target.files[0])} type= "file" id = "IMAGE" hidden="" required /> */}
+                    <input type="file" onChange={handleImageChange} id = "IMAGE" hidden="" required />
                 </div>
                 <div className = "add-product-name flex-col">
                     <p> Product Name</p>
