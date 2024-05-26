@@ -1,8 +1,8 @@
 import React from 'react'
 import './Navbar.css'
-import {assets} from '../../assets/assets'
+
 import UserProfile from '../UserProfile';
-import LoginButton from "../LoginForm/LoginButton";
+import LoginButton from '../LoginForm/LoginButton';
 import LogoutButton from '../LoginForm/LogoutButton';
 const Navbar = () => {
     return (
@@ -10,7 +10,7 @@ const Navbar = () => {
             <h1>E-spaza Admin </h1>
             
             <LoginButton/>
-            <UserProfile/>
+            {/* <UserProfile/> */}
             <LogoutButton/>
         </div>
     )
