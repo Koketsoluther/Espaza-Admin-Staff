@@ -11,7 +11,7 @@ import
 import {toast} from "react-toastify"
 
 function Home() {
-    const url = "https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/"
+    const url = "https://us-central1-e-spazadb.cloudfunctions.net/func"
     const [list,setList] = useState([]);
     const [plist,setpList] = useState([]);
     const [shopData, setShopData] = useState([]);

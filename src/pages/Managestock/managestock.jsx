@@ -6,7 +6,7 @@ import { jsPDF } from 'jspdf';
 
 
 const Manage = () => {
-    const url = "https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/"
+    const url = "https://us-central1-e-spazadb.cloudfunctions.net/func"
     const [list, setList] = useState([]);
 
     const fetchList = async () => {
