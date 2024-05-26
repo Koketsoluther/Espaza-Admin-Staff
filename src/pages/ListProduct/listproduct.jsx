@@ -4,7 +4,7 @@ import axios from "axios"
 import {toast} from "react-toastify"
 
 const List = () => {
-    const url = "http://localhost:4000"
+    const url = "https://thankful-hill-0b5ec3803-27.westeurope.5.azurestaticapps.net/"
     const [list,setList] = useState([]);
 
     const fetchList =async () => {
