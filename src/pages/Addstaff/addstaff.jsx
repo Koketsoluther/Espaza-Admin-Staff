@@ -79,15 +79,15 @@ const onSubmitHandler = async (event) => {
                 
                 <div className = "add-Staff-first-name flex-col">
                     <p>Staff Firstname</p>
-                    <input onChange={onChangeHandler}  value={data.NAME} type= "text" name='NAME' placeholder = 'John'/>
+                    <input onChange={onChangeHandler}  value={data.NAME} type= "text" name='NAME' placeholder = "John"/>
                 </div>
                 <div className = "add-Shopowner-name flex-col">
                     <p>Staff Surname</p>
-                    <input onChange={onChangeHandler}  value={data.SURNAME} type= "text" name='SURNAME' placeholder = 'Dore'/>
+                    <input onChange={onChangeHandler}  value={data.SURNAME} type= "text" name='SURNAME' placeholder = "Dore"/>
                 </div>
                 <div className = "add-Shopowner-name flex-col">
                     <p>Staff Email</p>
-                    <input onChange={onChangeHandler}  value={data.EMAIL} type= "email" name='EMAIL' placeholder = 'john.dore@staff.com'/>
+                    <input onChange={onChangeHandler}  value={data.EMAIL} type= "email" name='EMAIL' placeholder = "john.dore@staff.com"/>
                 </div>
                 <div className = "add-Shop-name flex-col">
                     <p>Shop name</p>
@@ -105,7 +105,7 @@ const onSubmitHandler = async (event) => {
                 </div>
                 <div className = "add-staffIDnumber flex-col">
                     <p>Staff ID number</p>
-                    <input onChange={onChangeHandler}  value={data.ID} type= "text" name='ID' placeholder = 'STAFF123' required/>
+                    <input onChange={onChangeHandler}  value={data.ID} type= "text" name='ID' placeholder = "STAFF123" required/>
                 </div>
                 {/* <div className = "add-staffpassword flex-col">
                     <p>Default Staff password</p>

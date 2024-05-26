@@ -42,11 +42,11 @@ const onSubmitHandler = async (event) => {
                 
                 <div className = "add-Shop-name flex-col">
                     <p> Shop Name</p>
-                    <input onChange={onChangeHandler}  defaultValue={data.name} type= "text" name='name' placeholder = 'Type here'/>
+                    <input onChange={onChangeHandler}  defaultValue={data.name} type= "text" name='name' placeholder = 'Enter Shop Name'/>
                 </div>
                 <div className = "add-Shopowner-name flex-col">
                     <p> Shop Owner Name</p>
-                    <input onChange={onChangeHandler}  defaultValue={data.ownername} type= "text" name='ownername' placeholder = 'Type here'/>
+                    <input onChange={onChangeHandler}  defaultValue={data.ownername} type= "text" name='ownername' placeholder = 'Enter Owner Name'/>
                 </div>
                 <div className ="add-Shop-Address flex-col">
                     <p> Shop address</p>
