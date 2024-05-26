@@ -14,7 +14,8 @@ const Assignorders = () => {
         try {
             const response = await axios.get(`${url}/api/order/list`);
             if (response.data.success) {
-                setList(response.data.data);
+                const filteredOrders = response.data.data.filter(order => order.SHOPID === '0');
+                setList(filteredOrders);
             } else {
                 toast.error("Error fetching orders");
             }
@@ -27,6 +28,7 @@ const Assignorders = () => {
         try {
             const response = await axios.get(`${url}/api/shop/list`); 
             if (response.data.success) {
+                
                 setShopList(response.data.data);
             } else {
                 toast.error("Error fetching shop list");
@@ -43,17 +45,18 @@ const Assignorders = () => {
 
     const statusHandler = async (event, orderId, shopId) => {
         try {
-            const response = await axios.post(`${url}/api/order/assign`, {
-                orderId,
-                STATUS: event.target.value,
-                shopID: shopId 
-            });
-            if (response.data.success) {
-                await fetchList();
-                console.log(response.data);
-            } else {
-                toast.error("Error updating order status");
-            }
+            // const response = await axios.post(`${url}/api/order/assign`, {
+            //     orderId,
+            //     STATUS: event.target.value,
+            //     shopID: shopId 
+            // });
+            await fetchList();
+            // if (response.data.success) {
+            //     await fetchList();
+                
+            // } else {
+            //     toast.error("Error updating order status");
+            // }
         } catch (error) {
             toast.error("Error updating order status");
         }
@@ -76,8 +79,8 @@ const Assignorders = () => {
         try {
             const selectedShopId = selectedShops[orderId];
             const response = await axios.post(`${url}/api/order/assign`, {
-                orderId,
-                shopID: selectedShopId
+                orderId: orderId,
+                SHOPID: selectedShopId
             });
             if (response.data.success) {
                 setList(prevList => prevList.filter(order => order._id !== orderId));

@@ -1,13 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import 
-{ BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,}
- from 'react-icons/bs'
- import 
- { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LineChart, Line, ResponsiveContainer, Label} 
- from 'recharts';
- import './dashboard.css'
- import axios from "axios"
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,} from 'react-icons/bs'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label} from 'recharts';
+import './dashboard.css'
+import axios from "axios"
 import {toast} from "react-toastify"
 
 function Home() {
@@ -48,26 +44,28 @@ function Home() {
       }
   };
 
-    const getOrderList = async (shopId) => {
-        try {
-          const response = await axios.get(`${url}/api/order/shopOrders`, { params: { shopId } });
-          if (response.data.success) {
-            return response.data.data;
+    // const getOrderList = async (shopId) => {
+    //     try {
+    //       const response = await axios.get(`${url}/api/order/shopOrders`, {SHOPID: shopId});
+    //       if (response.data.success) {
+    //         console.log(response.data.data);
+    //         return response.data.data;
             
-          } else {
-            toast.error('Error fetching orders list');
-            return [];
-          }
-        } catch (error) {
-          toast.error('Error fetching orders list');
-          return [];
-        }
-      };
+    //       } else {
+    //         toast.error('Error fetching orders list');
+    //         return [];
+    //       }
+    //     } catch (error) {
+    //       toast.error('Error fetching orders list');
+    //       return [];
+    //     }
+    //   };
 
       const getStaffList = async (shopId) => {
         try {
-          const response = await axios.get(`${url}/api/staff/list`, { params: { shopId } });
+          const response = await axios.post(`${url}/api/shop/shopstaff`, { SHOP: shopId });
           if (response.data.success) {
+            console.log(response.data.data);
             return response.data.data;
           } else {
             toast.error('Error fetching staff list');
@@ -79,17 +77,28 @@ function Home() {
         }
       };
 
+    //   const shopOrders = async (req,res) =>{
+    //     try {
+    //         const orders = await orderModel.find({SHOPID: req.body.shopId})
+    //         res.json({success: true, data: orders})
+    
+    //     } catch (error) {
+    //         console.log(error)
+    //         res.json({success:false, message: "Error"})
+    //     }
+    // }
 
       useEffect(() => {
         const fetchData = async () => {
             const shops = await fetchList();
             const dataPromises = shops.map(async (shop) => {
-                const orders = await getOrderList(shop._id);
+                //const orders = await getOrderList(shop._id);
+                //const orders = await shopOrders(shop._id);
                 const staff = await getStaffList(shop._id);
                 return {
                     name: shop.NAME,
                     staff: staff.length,
-                    orders: orders.length,
+                    orders: shop.NoORDERS
                 };
             });
             const data = await Promise.all(dataPromises);

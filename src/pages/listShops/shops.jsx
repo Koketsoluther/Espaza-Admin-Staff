@@ -32,25 +32,26 @@ const List = () => {
     }
     
     
-      const getOrderList = async (shopId) => {
-        try {
-          const response = await axios.get(`${url}/api/order/list`, { params: { shopId } });
-          if (response.data.success) {
-            return response.data.data;
-          } else {
-            toast.error('Error fetching orders list');
-            return [];
-          }
-        } catch (error) {
-          toast.error('Error fetching orders list');
-          return [];
-        }
-      };
+      // const getOrderList = async (shopId) => {
+      //   try {
+      //     const response = await axios.get(`${url}/api/order/list`, { params: { shopId } });
+      //     if (response.data.success) {
+      //       return response.data.data;
+      //     } else {
+      //       toast.error('Error fetching orders list');
+      //       return [];
+      //     }
+      //   } catch (error) {
+      //     toast.error('Error fetching orders list');
+      //     return [];
+      //   }
+      // };
 
       const getStaffList = async (shopId) => {
         try {
-          const response = await axios.get(`${url}/api/staff/list`, { params: { shopId } });
+          const response = await axios.post(`${url}/api/shop/shopstaff`, { SHOP: shopId });
           if (response.data.success) {
+            console.log(response.data.data);
             return response.data.data;
           } else {
             toast.error('Error fetching staff list');
@@ -64,16 +65,15 @@ const List = () => {
     
     
       const exportPDF = async (shop) => {
-        const orders = await getOrderList(shop._id);
+        //const orders = await getOrderList(shop._id);
         const staff = await getStaffList(shop._id);
-        if (staff.length ===0 || orders.length === 0) return;
 
     
           const doc = new jsPDF();
           doc.text(`Shop Name: ${shop.NAME}`, 10, 10);
           doc.text(`Address: ${shop.ADDRESS}`, 10, 20);
           doc.text(`Owner: ${shop.SHOPOWNER}`, 10, 30);
-          doc.text(`Number of Orders: ${orders.length}`, 10, 40);
+          doc.text(`Number of Orders: ${shop.NoORDERS}`, 10, 40);
           // let row1 = 20;
           // orders.forEach((order) => {
           //   doc.text(order.ADDRESS.street, 10, row1);
